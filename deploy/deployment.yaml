@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "gohellouniverse"
+  labels:
+    app: "gohellouniverse"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "gohellouniverse"
+  template: 
+    metadata:
+      labels:
+        app: "gohellouniverse"
+    spec:
+      containers:
+        - name: "gohellouniverse"
+          image: "docker.io/tnozicka/gohellouniverse:latest"
