@@ -1,6 +1,0 @@
-package: github.com/tnozicka/gohellouniverse
-import:
-- package: github.com/go-playground/log
-  version: ^4.2.0
-  subpackages:
-  - handlers/console
