@@ -10,8 +10,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/go-playground/log"
-	"github.com/go-playground/log/handlers/console"
+	"github.com/go-playground/log/v8"
 )
 
 func handleRoot(w http.ResponseWriter, r *http.Request) {
@@ -20,9 +19,9 @@ func handleRoot(w http.ResponseWriter, r *http.Request) {
 }
 
 func mainWithStatus() int {
-	cLog := console.New()
-	log.RegisterHandler(cLog, log.AllLevels...)
-	defer log.Trace("Https server finished").End()
+	log.RedirectGoStdLog(true)
+
+	defer log.WithTrace().Info("Https server finished")
 
 	signalChannel := make(chan os.Signal, 10)
 	signal.Notify(signalChannel, syscall.SIGINT, syscall.SIGABRT, syscall.SIGTERM)
